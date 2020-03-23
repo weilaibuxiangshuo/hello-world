@@ -1,0 +1,114 @@
+<!-- 标题标签 -->
+<h1></h1> 到 <h6></h6>
+
+<!-- 换行标签 -->
+<br />
+<!-- 段落标签 -->
+<p>sunck is good man</p>
+
+<!-- 水平线 -->
+<hr />
+
+<!-- 字体样式标签 -->
+<!-- 加粗 -->
+<b></b> 和 <strong></strong>   
+
+<!-- 倾斜 -->
+<em></em> 和 <i></i>
+
+<!-- 特殊符号 -->
+<!-- <p>sunck     is good man </p>   //此种方式默认只有一个空格 -->
+&nbsp   空格
+&gt     大于号
+&lt     小于号
+&quot   双引号
+&copy   版权符号
+<p>sunck&nbspisgoodman</p>
+
+<!-- 图片格式 -->
+JPG GIF PNG BMP
+<!-- 图像标签 -->
+<img src="图片路径" alt="图像加载失败时替代文字" title="鼠标悬停显示文字" width="图像宽度" height="图像高度">
+
+
+<!-- 链接标签 -->
+<a href="http://www.baidu.com">网址路径</a>
+<a href="img/image.jpg">也可以链接图片路径</a>
+<!-- 可以嵌套图片标签 -->
+<a href="http://www.baidu.com"><img src="img/image.jpg" alt=""></a>
+
+<!-- 锚连接 -->
+<!-- 1.先设置锚点 -->
+<a name = "miaodian"></a>
+<!-- 2.点击跳转处 -->
+<a href="#miaodian">跳转锚点</a>
+
+
+
+<!-- 无序列表 -->
+<!-- type值：disc 圆实心 square 方实心 circle 空心圆 -->
+<ul type="circle">
+    <li>sunck is good</li>
+    <li>sunck is good</li>
+    <li>sunck is good</li>
+</ul>
+
+<!-- 有序列表 -->
+<!-- type值：1 数字作为项目符号(默认) A/a 大写/小写字母作为项目符号 I/i 大写/小写罗马数字作为项目符号 -->
+<ol type="I">
+    <li>sunck is good</li>
+    <li>sunck is good</li>
+    <li>sunck is good</li>
+</ol>
+
+<!-- 自定义列表 -->
+<!-- type值：1 数字作为项目符号(默认) A/a 大写/小写字母作为项目符号 I/i 大写/小写罗马数字作为项目符号 -->
+<dl type="I">
+    <dt>学院</dt>
+    <dd>电子信息工程</dd>
+    <dd>电子信息工程</dd>
+    <dt>学院</dt>
+    <dd>电子信息工程</dd>
+    <dt>学院</dt>
+    <dd>电子信息工程</dd>
+</dl>
+
+<!-- 表格基本语法 -->
+<!-- table:表格标签 tr:行标签  td：单元格标签 th:表头 -->
+<!-- 水平对齐方式(align)：left 左对齐 right 右对齐 center 居中对齐 -->
+<!-- 垂直对齐方式(valign)：top 顶端对齐 middle 居中对齐 bottom 底端对齐 -->
+<table align="center">
+    <tr><th>表头</th></tr>
+    <tr>
+        <td>第一行第1列</td>
+        <td>第一行第2列</td>
+    </tr>
+    <tr>
+        <td>第二行第1列</td>
+        <td>第二行第2列</td>
+    </tr>
+</table><br />
+
+<!-- 表格跨行或者跨列合并 -->
+<!-- 表格跨列 colspan:合并列    rowspan:合并行-->
+<!-- 合并多少，就需要去除对应的其它单元格 -->
+<!-- 边框：border:边框值  cellspacing:间距  cellpadding:内容距离单元格上下间距 -->
+<table align="center" border="1" cellspacing="0" cellpadding="2">
+    <tr><th>姓名</th><th>年龄</th><th>地址</th></tr>
+    <tr>
+        <td colspan="2">第一行第1列</td>
+        <!-- <td>第一行第2列</td> -->
+        <td>第一行第3列</td>
+    </tr>
+    <tr>
+        <td>第二行第1列</td>
+        <td >第二行第2列</td>
+        <td rowspan="2">第二行第3列</td>
+    </tr>
+    <tr>
+        <td>第三行第1列</td>
+        <td>第三行第2列</td>
+        <!-- <td>第三行第3列</td> -->
+    </tr>
+</table>
+
