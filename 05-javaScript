@@ -1,0 +1,258 @@
+// 数字 字符串 布尔值互转
+// 1.其它转数字,如果字符串含有字母或者其它符号即停止，
+// 只转前面部分数字，如果开头不是数字即为Nan,没有可转换的
+var num1 = "123aa"
+var str11 = parseInt(num1)
+console.log(str11)
+
+// 2.其它转字符串
+// null-->string
+var str1 = "sunck" + null
+console.log(str1)
+// undefined-->string
+var str2 = "sunck" + undefined
+console.log(str2)
+// boolean-->string
+var str3 = true.toString() 
+console.log(str3)
+// number-->string
+var num = 3
+var str4 = num.toString()
+console.log(str4)
+
+// 其它转布尔
+// 以下六种情况默认是false
+// 1.""(空字符串) 2.null 3.underfined 4.0(数字零) 5.NaN 6.false
+console.log(Boolean(""))
+
+
+// 数组遍历与常用方法
+
+var arr = new Array()
+
+arr[0] = "ijidjf"
+arr[1] = 2
+arr[2] = "djf"
+arr[3] = "37djf"
+arr[4] = 3
+
+//注意：使得此方法数组的索引为数值
+for (var i =0;i<arr.length;i++){
+    console.log(typeof(i))
+    console.log("arr[%d] = %s",i,arr[i])
+}
+
+//注意：使得此方法数组的索引为字符串
+for (var i in arr){
+    console.log(typeof(i))
+    console.log("arr[%s] = %s",i,arr[i])
+}
+
+// foreach()遍历数组，是ecmscripts中加入的，在低版本的ie中无法使用
+// foreach中不能使用break和continue
+arr.forEach(function(e){
+    console.log(e)
+})
+
+// 删除数组中的元素
+// 注意删除数组中的元素，位置还是在只是显示empty
+delete arr[0]
+console.log(arr)
+// arr[0]只是删除值，并不是把数据arr[0]删除，所以，arr[0]显示empty
+// 结果：[empty, 2, "djf", "37djf", 3]
+
+// 在数据后面添加数组元素
+arr.push(90)
+console.log(arr)
+
+// 在数组前面添加数组元素
+arr.unshift("uu")
+console.log(arr)
+
+// 删除数组最后一个,此方式是真实删除，不会存在只删除值而显示empty
+arr.pop()
+console.log(arr)
+
+// 删除数组第一个,此方式是真实删除，不会存在只删除值而显示empty
+arr.shift()
+console.log(arr)
+
+// 用参数字符串将元素拼接成一个新字符串，不会改变原数组
+var newArr = arr.join("&")
+console.log(newArr)
+
+// 数组截取(也可以用于字符串)，只包含前面下标，不包含最后下标，例如下面只拿1到2两个数组元素
+var arr1 = arr.slice(1,3)
+console.log(arr1)
+
+console.log("akjdskfjk".slice(1,5))
+
+// 数组元素替换，下面会把1到3,有包含开始和结束下标，替换为，10和20，如果后面数值多，会一起插入
+arr.splice(1,3,10,20,100,1000)
+console.log(arr)
+// 原来：[empty, 2, "djf", "37djf", 3]
+// 结果： [empty, 10, 20, 100, 1000, 3]
+
+// 从数组前面中查找，找不到返回-1，如果找到返回数组中的下标
+var indexNum = arr.indexOf(1000)
+console.log(indexNum)
+
+// 从数组后面中查找，找不到返回-1，如果找到返回数组中的下标
+var indexNum1 = arr.lastIndexOf(1000)
+console.log(indexNum1)
+
+// 数组反序
+arr.reverse()
+console.log(arr)
+
+// 数组排序,默认是升序
+arr.sort()
+console.log(arr)
+
+// 举例：按字符串长度排序
+arr.sort(function(x,y){
+    return x.toString().length > y.toString().length
+})
+console.log(arr)
+
+
+//字符串(注意：字符串创建后，是不可改变，只能改变引用)
+
+// 字符串基本类型
+var str21 = "sunck is good man"
+// 字符串对象类型
+var str22 = new String("sunck is good man")
+console.log(str21,str22)
+
+//字符串截取
+console.log(str21.charAt(1))
+console.log(str21[1])
+// 上面两个是效果一样
+
+// 转为ASCII编码
+console.log(str21.charCodeAt(1))
+// ASCII转为字符串
+console.log(String.fromCharCode(117))
+// 转为大写
+var newStr1 = str21.toUpperCase()
+console.log(newStr1)
+// 转为小写
+var newStr2 = str21.toLowerCase()
+console.log(newStr2)
+//字符串比较大小
+var str13 = "abc"
+var str14 = "acd"
+console.log(str13>str14)  //值是布尔false或true
+console.log(str13.localeCompare(str14))  //值为大于为正1，等于为0，小于为-1
+// 字符串查找
+var str15 = str1.indexOf('good')
+// 查找到返回查找到第一个下标，查找不到返回-1
+
+//字符串替换（如果要全部替换只能用正则）
+var str16 = str1.replace("源字符","目标字符")
+
+//字符串截取1
+var str17 = "sunck is nice man"
+//取字符下标为5到9之前字符
+var res1 = str17.substring(5,9)
+//取字符下标为5到结束
+var res2 = str17.substring(5)
+console.log(res2)
+
+//字符串截取2
+var res3 = str17.substr(3)
+// 跟上面substring不同的是，此方法是从3截取后面指定7个字符的字符串
+var res3 = str17.substr(3,7)
+
+// 字符串分割
+var res5 = str17.split(" ")
+console.log(res5)
+
+//Math对象
+
+// 四舍五入
+console.log(Math.round(3.8));
+// 向上取整
+console.log(Math.ceil(3.8));
+// 向下取整 
+console.log(Math.floor(3.8));
+// 取最大值 
+console.log(Math.max(3.8));
+// 取最小值 
+console.log(Math.min(3.8));
+// 绝对值 
+console.log(Math.abs(-3.8));
+// 求x的y次方（x=2,y=3）
+console.log(Math.pow(2,3));
+// 开平方
+console.log(Math.sqrt(25));
+// 随机输出x到y之间的一个整数（包含x和y ）
+// console.log(parseInt(Math.random()*(y-x+1)+x));
+
+
+// 时间Date类
+
+// 获取当前的时间
+var d1 = Date()
+console.log(d1)
+
+// 创建时间对象
+var d = new Date()
+// 同样可以获取当前时间跟上面不样在于，这个对象可以设置日期和时间
+console.log(d)
+
+// 可以指定日期和时间
+var d2 = new Date("2016:10:23")
+console.log(d2)
+
+// 月是从0开始算，其它正常
+var d3 = new Date(2017,0,25)
+console.log(d3)
+
+// 如果只有一个数会以毫秒显示
+var d4 = new Date(2018)
+console.log(d4)
+
+// 获取日期时间
+var d5 = new Date()
+// 获取年份
+console.log(d5.getFullYear())
+// 获取月份，注意0表示1月，依此类扒
+console.log(d5.getMonth())
+// 获取日期
+console.log(d5.getDate())
+// 获取星期
+console.log(d5.getDay())
+// 获取小时
+console.log(d5.getHours())
+// 获取分钟
+console.log(d5.getMinutes())
+// 获取秒数
+console.log(d5.getSeconds())
+// 获取毫秒
+console.log(d5.getUTCMilliseconds())
+// 获取时间戳即获取距离1970-01-01的毫秒数
+console.log(d5.getTime())
+//设置年份
+d5.setFullYear(2015)
+d5.setMonth(2)
+// .....
+
+// 日期转换
+// 转为字符串包含年月日时分秒
+console.log(d5.toLocaleString())
+// 转为字符串包含年月日
+console.log(d5.toLocaleDateString())
+// 转为字符串包含时分秒
+console.log(d5.toLocaleTimeString())
+
+// 转为日期格式
+// 参数：日期字符串  格式 ：2016-09-08 2015/03/09 12:00:00
+// 返回该日期距离1970年1月1日0点的毫秒数
+console.log(Date.parse("2016-10-19"))
+
+// 时间相减(毫秒)
+var dd1 = new Date()
+var dd2 = new Date(2016,1,25)
+console.log(dd1-dd2)
+
