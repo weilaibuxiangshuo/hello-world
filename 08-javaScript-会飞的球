@@ -6,6 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        #parentbox {
+            height: 700px;
+            width: 500px;
+            position: relative;
+            background-color: blue;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 25px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+
+        }
+
+        button.btn1 {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
+        button.btn2 {
+            position: absolute;
+            top: 200px;
+            left: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parentbox">
+        <div id="box"></div>
+    </div>
+    <button onclick="startfunc()" class="btn1">开始</button>
+    <button onclick="endfunc()" class="btn2">结束</button>
+    <script>
+        var n=10;m=10;
+        var temp;
+        var div1 = document.getElementById("box")
+        function func1() {
+            numLeft = parseInt(window.getComputedStyle(div1,null).left)+n
+            numTop = parseInt(window.getComputedStyle(div1,null).top)+m
+            console.log(div1.offsetLeft,div1.offsetTop)
+            div1.style.left = numLeft+"px";
+            div1.style.top = numTop+"px";
+            // div1.style.top = div1.offsetLeft+n+"px";
+            // div1.style.left = div1.offsetTop+m+"px";
+            // console.log(div1.offsetLeft,div1.offsetTop)
+            console.log(numLeft)
+            console.log(numTop)
+            if (numLeft >= 500-50 || numLeft < 0) {
+                n *= -1
+            } 
+            if (numTop >= 700-50 || numTop< 0) {
+                m *=-1
+            } 
+        }
+        function startfunc() {
+            temp = setInterval(func1, 100)
+            // console.log(window.innerHeight)
+        }
+        function endfunc() {
+            clearInterval(temp)
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+----------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
         body {
             height: 700px;
             width: 500px;
