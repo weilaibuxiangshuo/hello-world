@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="height: 3000px;">
+    <button onclick="func1()">按钮1</button>
+    <button onclick="func2()">按钮2</button>
+    <script>
+        // // 当页面完全加载成功触发该事件，只能写一个，如果重复后面会覆盖前面
+        // window.onload = function (){
+        //     alert("加载数据2")
+        // }
+        // // 当页面关闭时加载该事件，只有ie支持，基本不用此方法
+        // window.onunload = function(){
+        //     alert("确认关闭")
+        // }
+
+        // alert("加载数据1")
+        // ----------------------------------------------------------------
+        // // 页面滚动事件，当页面滚动条滚动时执行
+        // window.onscroll = function(){
+        //     console.log("滚动了")
+        //     //获取屏幕的高度
+        //     var a = document.body.scrollTop || document.documentElement.scrollTop
+        //     console.log(a)
+        // }
+        // ----------------------------------------------------------------
+        // // 窗口发生变化的触发事件
+        // window.onresize = function(){
+        //     // 获取窗口的宽度跟高度
+        //     w = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth
+        //     h = document.documentElement.clientHeight || document.body.clientHeight || window.innerHeight
+        //     console.log(w,h)
+        // }
+        // ----------------------------------------------------------------
+        // //间歇定时器
+        // // 2秒执行一次
+        // var time;
+        // time = window.setInterval(function () {
+        //     console.log("你是sb")
+        // }, 2000)
+        // function func1() {
+        //     // 删除定时器
+        //     window.clearInterval(time)
+        // }
+        // function func2() {
+        //     time = window.setInterval(function () {
+        //         console.log("你是sb")
+        //     }, 2000)
+        // }
+        // ----------------------------------------------------------------
+        // 所有方法属性都是在给window添加，所有有加window跟没有加是一样的系统默认会添加
+        // // 延时定时器，只执行一次，3秒钟后执行
+        // var time = setTimeout(function(){
+        //     console.log("只执行一次")
+        // },3000)
+        // ----------------------------------------------------------------
+        
+
+    </script>
+</body>
+
+</html>
