@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="height: 3000px;">
+    <div id="idDiv"></div>
+    <div class="classDdiv"></div>
+    <div class="classDdiv"></div>
+    <div class="classDdiv"></div>
+    <div class="classDdiv"></div>
+    <input type="text" name="inputText">
+    <input type="text" name="inputText">
+    <input type="text" name="inputText">
+
+    <input type="text" id = "in" placeholder="请留下你的大名" my = "我的">
+    <button onclick="func1()">按钮</button>
+    <button onclick="func2()">按钮</button>
+    <div id="box" style="width: 100px;height: 200px;background-color: brown;">我是个盒子</div>
+    <button onclick="changeColor()">换颜色</button>
+    <script>
+        // 找到要操作的标签对象
+        // 获取id的标签对象
+        var jsDiv = document.getElementById("idDiv")
+        console.log(jsDiv)
+        console.log(typeof(jsDiv))
+        // 获取class的标签对象
+        var jsDivs = document.getElementsByClassName("classDdiv")
+        console.log(jsDivs)
+        console.log(typeof(jsDivs))
+        // 获取name的标签对象
+        var jsInputArr = document.getElementsByName("inputText")
+        console.log(jsInputArr)
+        console.log(typeof(jsInputArr))
+        // 获取所有DIV的标签对象
+        var jsAllDivArr = document.getElementsByTagName("div")
+        console.log(jsAllDivArr)
+        console.log(typeof(jsAllDivArr))
+        
+        // 拿属性节点方法一，点后面加属性，只能拿官方定义的属性，自己定义的是拿不到（要拿属性，需要先拿标签节点）
+        var jsInput1 = document.getElementById("in")
+        console.log(jsInput1.placeholder)
+        // 修改属性节点
+        function func1(){
+            jsInput1.placeholder = "sunck is good man"
+        }
+        // 拿属性节点方法二，可以拿自定义的属性（要拿属性，需要先拿标签节点）
+        console.log(jsInput1.getAttribute("my"))
+        function func2(){
+            // 修改属性节点
+            jsInput1.setAttribute("my","good")
+            console.log(jsInput1.getAttribute("my"))
+            // 删除属性节点
+            jsInput1.removeAttribute("my")
+            console.log(jsInput1)
+            // 增加属性节点
+            jsInput1.setAttribute("my1","good")
+            console.log(jsInput1)
+        }
+        // 获取文本节点
+        var jsDiv2 = document.getElementById("box")
+        // 包含换行以及空格
+        console.log(jsDiv2.innerHTML)
+        jsDiv2.innerHTML = "<h1>good</h1>"
+        // 包含开始标签 和结束标签 例：<div></div>
+        console.log(jsDiv2.outerHTML)
+        // 获取纯文本
+        console.log(jsDiv2.innerText)
+
+        // 行内节点
+        // 修改行内节点值 
+        function changeColor(){
+            // 注意值都是字符串，此方法是修改，并不会替换原来整个style,并且只能获取行内样式，外部跟内部样式无法获取
+            jsDiv2.style.backgroundColor = "blue"
+            jsDiv2.style.width = "300px"
+            // 此方法是直接替换原来style所有样式 ,只能修改行内样式，外部跟内部样式无法获取
+            jsDiv2.setAttribute("style","width:500px;height:100px;")
+        }
+
+        // 可以行内，内部，外部样式修改和获取 
+        // ie浏览器样式属性值的方式
+            console.log(jsDiv2.currentStyle.width)
+        // 其它浏览器样式属性值的方式 
+            w1 = window.getComputedStyle(jsDiv2,null).width
+            console.log(w1)
+        // 设置样式用行内 设置方法就可以如下：
+            jsDiv2.style.backgroundColor = "blue"
+            jsDiv2.style.width = "300px"
+    </script>
+
+</body>
+</html>
