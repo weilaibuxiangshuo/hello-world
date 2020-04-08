@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="height: 3000px;">
+    <div id="box1">
+        <p>我是第一个P</p>
+        <p>我是第二个P</p>
+        <p>我是第三个P</p>
+        <p>我是第四个P</p>
+    </div>
+    <div id="box2"></div>    
+    <div id="box3"></div>
+    <p>lakdsjlf</p>
+    <input type="text" id="put" name="in" placeholder="sunck is good man">
+    <script>
+        // 节点类型 nodeName nodeType nodeValue
+        // 元素节点 元素名称  1         null
+        // 属性节点 属性名称  2         属性值
+        // 文本节点 #text    3         文本内容不包含html
+        // 注释节点 #comment 8         注释内容
+        var jsDiv1 = document.getElementById("box1")
+        console.log(jsDiv1)
+        console.log(jsDiv1.nodeName)
+        console.log(jsDiv1.nodeType)
+        console.log(jsDiv1.nodeValue)
+        var jsDiv2 = document.getElementById("box2")
+        var jsDiv3 = document.getElementById("box3")
+        var jsDiv4 = document.getElementById("box4")
+        // 获取当前元素节点的所有子节点
+        var allChilds = jsDiv1.childNodes;
+        // 会拿到9点节点，包含4个元素节点，换行算一个文本节点,一共有5个换行，所有一共9个
+        console.log(allChilds)
+        // 获取当前元素节点的第一个子节点
+        var firstChild = jsDiv1.firstChild;
+        // 获取当前元素节点的最后一个子节点
+        var lastChild = jsDiv1.lastChild;
+        // 获取当前元素节点的根节点，相当于document
+        var rootNode = jsDiv1.ownerDocument;
+        console.log(rootNode);
+        // 获取当前元素节点的父节点
+        var parentNode = jsDiv1.parentNode;
+        // 获取当前元素节点的前一个同级同级节点
+        var parentNode = jsDiv3.previousSibling;
+        // 获取当前元素节点的后一个同级同级节点
+        var parentNode = jsDiv3.nextSibling;
+        // 获取当前节点所有属性节点
+        var inpArr = document.getElementById("put")
+        console.log(inpArr.attributes)
+        console.log(inpArr.attributes.name.nodeValue)
+
+        // 如何创建节点
+        var div8 = document.getElementById("box2");
+
+        var a = document.createElement("p");
+        a.innerHTML = "sunck is nice man"
+        a.style.backgroundColor = "red"
+        console.log(a)
+
+        // 插入节点
+        // div8.appendChild(a)
+        // 插入元素节点最后一个子节点之前
+        div8.insertBefore(a,div8.lastChild)
+
+        // 替换节点
+        div8.replaceChild(a,div8.lastChild)
+
+        // 克隆节点,加有true克隆所有，如果没有加true只克隆父节点没有子节点
+        var newStr = div8.cloneNode(true)
+        console.log(newStr)
+
+        // 删除节点
+        div8.removeChild(div8.lastChild)
+        console.log(div8)
+
+        // 删除父节点下对应的所有子节点
+        jsDiv2.parentNode.removeChild(jsDiv2)
+
+
+        // 创建文本节点
+        var jsStr = document.createTextNode("8888888")
+        // 添加文本节点
+        var jsinsert = div8.childNodes[0]
+        jsinsert.appendChild(jsStr)
+
+
+
+
+    </script>
+</body>
+</html>
