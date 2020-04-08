@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 700px;
+            width: 500px;
+            position: relative;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 25px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+
+        }
+
+        button.btn1 {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
+        button.btn2 {
+            position: absolute;
+            top: 200px;
+            left: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <button onclick="startfunc()" class="btn1">开始</button>
+    <button onclick="endfunc()" class="btn2">结束</button>
+    <script>
+        var w = parseInt(document.body.clientWidth);
+        var h = parseInt(document.body.clientHeight);
+        var n=10;m=10;
+        var temp;
+        console.log(w, h)
+        function func1() {
+            var div1 = document.getElementById("box")
+            var divLeft = parseInt(window.getComputedStyle(div1, null).left)
+            var divTop = parseInt(window.getComputedStyle(div1, null).top)
+
+            if (divLeft < w && divLeft >= 0) {
+                div1.style.left = divLeft + n + "px"
+            } else {
+                clearInterval(temp)
+                n = -n
+                div1.style.left = divLeft + n + "px"
+                temp = setInterval(func1, 100)
+            }
+            if (divTop < h && divTop >= 0) {
+                div1.style.top = divTop + m + "px"
+            } else {
+                clearInterval(temp)
+                m = -m
+                div1.style.top = divTop + m + "px"
+                temp = setInterval(func1, 100)
+            }
+        }
+        function startfunc() {
+            temp = setInterval(func1, 100)
+            // console.log(window.innerHeight)
+        }
+        function endfunc() {
+            clearInterval(temp)
+        }
+    </script>
+</body>
+
+</html>
