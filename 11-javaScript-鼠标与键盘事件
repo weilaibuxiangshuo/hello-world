@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name ="" id="in" value="" />
+    <div id="in2" style="width: 100px;height: 100px;background-color: rebeccapurple;"></div>
+    <ul>
+        <li>鼠标进入变红色</li>
+        <li>鼠标离开变蓝色</li>
+        <li>鼠标按下字体大2倍</li>
+        <li>鼠标抬起字体小2倍、
+        </li>
+    </ul>
+    <script>
+        var inp = document.getElementById("in")
+        // focus聚焦
+        inp.addEventListener("focus",function(){
+            console.log("聚焦事件")
+        },false)
+        // blur离焦
+        inp.addEventListener("blur",function(){
+            console.log("离焦事件")
+        },false)
+        // 键盘事件
+        // 如果单击和双击都存在需要用到延时器
+        var div2 = document.getElementById("in2")
+        var time;
+        div2.addEventListener("click",function(){
+            clearTimeout(time);
+            time = setTimeout(function(){
+            console.log("单击")
+            },300)
+        },false)
+        div2.addEventListener("dblclick",function(){
+            clearTimeout(time)
+            console.log("双击")
+        },false)
+        var jsUl = document.getElementsByTagName("li")
+        console.log(jsUl)
+        for (var i =0;i<jsUl.length;i++){
+                    // 鼠标进入
+            jsUl[i].addEventListener("mouseover",function(){
+                this.style.backgroundColor = "red"
+            },false)
+                    // 鼠标离开
+            jsUl[i].addEventListener("mouseout",function(){
+                this.style.backgroundColor = "blue"
+            },false)
+                    // 鼠标按下
+            jsUl[i].addEventListener("mousedown",function(){
+                this.style.fontSize = parseInt(window.getComputedStyle(this,null).fontSize)*2+"px" 
+            },false)                    
+                    // 鼠标弹起
+            jsUl[i].addEventListener("mouseup",function(){
+                this.style.fontSize = parseInt(window.getComputedStyle(this,null).fontSize)/2+"px" 
+            },false)
+        }
+        // 鼠标移动触发
+        document.addEventListener("mousemove",function(){
+            console.log("鼠标移动中")
+        },false)
+
+        // 键盘事件
+        // 键盘按下
+        document.addEventListener("keydown",function(e){
+            // window.event用于ie，e用于除ie的其它浏览器通用
+            var event = e || window.event
+            console.log(event)
+            console.log(event.altKey,event.ctrlKey,event.shiftKey,event.keyCode,event.key)
+        },false)
+        // 键盘弹起
+        document.addEventListener("keyup",function(e){
+            // window.event用于ie，e用于除ie的其它浏览器通用
+            var event = e || window.event
+            console.log(event)
+            console.log(event.altKey,event.ctrlKey,event.shiftKey,event.keyCode,event.key)
+        },false)
+        // 按下键盘功能键响应例如：capslock
+        document.addEventListener("keypress",function(e){
+            // window.event用于ie，e用于除ie的其它浏览器通用
+            var event = e || window.event
+            console.log(event)
+            console.log(event.altKey,event.ctrlKey,event.shiftKey,event.keyCode,event.key)
+        },false)
+
+        var js2Str = document.getElementById("in2")
+        js2Str.onclick = function(e){
+            var event = e || window.event
+            console.log(event)
+            // 鼠标点击位置距离浏览器可视窗口坐标
+            console.log(event.clientX,event.clientY)
+            // 鼠标点击位置距离页面坐标
+            console.log(event.pageX,event.pageY)
+            // 鼠标点击位置距离电脑屏幕坐标
+            console.log(event.screenX,event.screenY)
+            // 鼠标点击按键
+            console.log(event.button)
+        }
+
+        // 事件流
+        var js3Str = document.getElementById("out1")
+        // 如果有三个DIV是嵌套关系，最里层是DIV3，中间div2,最外层DIV1,都添加点击事件
+        // true 捕获阶触发事件 div1 -> div2 -->div3
+        // false 冒泡阶段触发事件 div3 -->div2--div1
+
+        js3Str.addEventListener("click",function(){},false)
+
+    </script>
+</body>
+</html>
