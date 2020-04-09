@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            height: 100px;width: 100px;background-color: red;
+        }
+        #box2 {
+            height: 100px;width: 100px;background-color: black;
+        }
+        #box3 {
+            height: 100px;width: 100px;background-color: blue;
+        }
+        #box4 {
+            height: 100px;width: 100px;background-color: blueviolet;
+        }
+        #box5 {
+            height: 100px;width: 100px;background-color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box1" onclick="alert('sunck is good man')"></div>
+    <div id="box2" onclick="func()"></div>
+    <div id="box3" ></div>
+    <div id="box4" ></div>
+    <div id="box5" onclick="func2(this)"></div>
+    <script>
+        // 事件绑定第二种
+        function func(){
+            alert("nice is good man")
+        }
+        // 事件绑定第三种，下一个事件会覆盖上一个事件，只执行下一个事件，上一个事件不执行
+        var div3 = document.getElementById("box3")
+        div3.onclick = function(){
+            console.log(this) //这里代表元素节点box4本身
+            alert("handler man")
+        }
+        // div3.onclick = function(){
+        //     alert("cool man")
+        // }
+        // 清除事件
+        // div3.onclick = null 
+
+        // 事件绑定第四种,事件之间不影响，会按顺序执行，不会覆盖
+        var div4 = document.getElementById("box4")
+        function f (){
+            console.log(this)  //这里代表元素节点box4本身
+            console.log("cool man")
+        }
+        div4.addEventListener("click",f,false)
+        // div4.addEventListener("click",f,false)
+        // 清除事件，函数不能使用匿名函数
+        // div4.removeEventListener("click",f,false)
+
+        // this的应用，节点传递过来的实参this，函数只需要随意一个名的形参接收即可
+        // this在事件函数中如box3.onclick和box4.addEventListener添加点击事件代表是元素节点对象本身，不是window
+        // 如果在元素节点直接调用普通函数,this代表是windows，元素节点传递this，用self区别，代表元素节点对象
+        console.log(this)  //this大多数代表window
+        function func2(self){
+            // 这里的self相当于document.getElementById("box5")
+            console.log(self) //因为this大多数代表window所有，节点传递过来的this用self，以区别window中的this
+            console.log("this",this)  //这里的this也是window
+            console.log(document.getElementById("box5"))
+            console.log(typeof(self))
+            self.style.backgroundColor = "red"
+            alert("nice")
+        }
+        // 1.在标签中使用，代表标签本身
+        // 2.在函数体中直接使用，代表是window，在标签中将this作为实参传递到函数中，在函数休中使用形参代表标签本身
+        // 3.在事件函数中使用，代表标签本身
+    </script>
+</body>
+</html>
