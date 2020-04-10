@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 300px;
+            width: 300px;
+            background-color: yellow;
+        }
+        #box {
+            height: 100px;
+            width: 100px;
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" ></div>
+    <input type="text" name="in" id="put">
+    <a href="red.html" id="link">点击跳转</a>
+    <script>
+        // 如果没有阻止事件冒泡那么点击box的时候，body颜色也会跟着改变
+        document.body.onclick = function(){
+            this.style.backgroundColor = "red"
+        }
+        // var jsBox1 = document.getElementsByTagName("div")
+        var jsBox1 = document.getElementById("box")
+        console.log(jsBox1)
+        document.getElementById("box").onclick = function(e){
+            // 阻止事件冒泡
+            var event = e || window.event
+            console.log(event)
+            event.stopPropagation()
+            this.style.backgroundColor = "black"
+        }
+        // 阻止A默认事件
+        document.getElementById("link").onclick = function(e){
+            // 阻止事件冒泡
+            var event = e || window.event
+            // console.log(event)
+            event.stopPropagation()
+            var info = window.confirm("您浏览的页面存在风险，是否继续？")
+            if (info == false){
+                // 阻止默认事件
+                event.preventDefault()
+            }
+        }
+    </script>
+
+</body>
+</html>
