@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="box">
+        <div id="img1" class="imgShow"></div>
+        <div id="img2" class="imgShow"></div>
+        <div id="airplance"></div>
+    </div>
+    <script src="index.js"></script>    
+</body>
+</html>
+
+
+---------------------------------------------------------------------------------
+
+#index.css
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#box {
+    height: 635px;
+    width: 350px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#img2 {
+    position: absolute;
+    top: -635px;
+}
+
+.imgShow {
+    background-image: url("./images/2.jpg");
+    height: 635px;
+    width: 350px;
+    position: absolute;
+}
+
+#airplance {
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    position: absolute;
+    bottom: 20px;
+    left: 150px;
+}
+
+.zidan {
+    width: 5px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+}
+
+.tank {
+    height: 25px;
+    width: 25px;
+    background-color: blue;
+    position: absolute;
+}
+
+--------------------------------------------------------
+
+#index.js
+
+var jsbox = document.getElementById("box")
+var jsimg1 = document.getElementById("img1")
+var jsimg2 = document.getElementById("img2")
+var jsairplance = document.getElementById("airplance")
+
+// 让背景不断滚动
+var screenImg = setInterval(function(){
+    jsimg1.style.top = jsimg1.offsetTop +10 + "px"
+    jsimg2.style.top = jsimg2.offsetTop +10 + "px"
+    if(jsimg1.offsetTop >= 635){
+        jsimg1.style.top = "-630px"
+    }
+    if(jsimg2.offsetTop >= 635){
+        jsimg2.style.top = "-635px"
+    }
+},100)
+
+var movex = 0;
+var movey = 0;
+var basex = 0;
+var basey = 0;
+// 给飞机添加一个点击事件
+jsairplance.onmousedown = function(e){
+    var ee = e || window.event;
+    // 需要设置停止冒泡事件及取消默认事件，否则飞机移动有问题
+    e.stopPropagation();
+    e.preventDefault();
+    basex = ee.pageX;
+    basey = ee.pageY;
+    console.log(basex,basey)
+    // 如果要在box移动，需要在box内添加一个鼠标移动事件
+    jsbox.onmousemove = function(e){
+        var ev = e || window.event
+        movex = ev.pageX - basex
+        basex = ev.pageX
+        movey = ev.pageY -basey
+        basey = ev.pageY
+        jsairplance.style.left = jsairplance.offsetLeft + movex + "px"
+        jsairplance.style.top = jsairplance.offsetTop + movey + "px"
+    }
+}
+// 需要设置鼠标离开区域移动停止
+jsbox.addEventListener("mouseleave",function(){
+    jsbox.onmousemove = null
+})
+// 鼠标弹起移动停止
+jsbox.addEventListener("mouseup",function(){
+    jsbox.onmousemove = null
+},false)
+
+// 创建子弹
+var num=0;
+var arrNum=[];
+var publicNum= [];
+// 利用数组不断重复添加num属性
+for (var t=0;t<100;t++){
+    publicNum.push(t.toString())
+}
+var airp = setInterval(function(){
+    var zidan = document.createElement('div')
+    zidan.className = "zidan"
+    zidan.style.left = jsairplance.offsetLeft + 25 + "px"
+    zidan.style.top = jsairplance.offsetTop -15 + "px"
+    var temp = publicNum.shift()
+    zidan.setAttribute("num",temp)
+    num++
+    jsbox.appendChild(zidan)
+
+    // 让子弹飞
+    var zidanfly = setInterval(function(){
+        zidan.style.top = zidan.offsetTop - 5 + "px"
+        if(zidan.offsetTop <= 20){
+            clearInterval(zidanfly)
+            str1 = zidan.getAttribute("num")
+            // console.log(publicNum)
+            // console.log(arrNum,"---",str1)
+            if(arrNum.indexOf(str1)===-1){
+                publicNum.push(str1)
+                jsbox.removeChild(zidan)
+            }else{
+                var arrtemp = arrNum.shift()
+                publicNum.push(arrtemp)
+            }
+        }
+    },100)
+},1000)
+
+// 坦克
+var tank = setInterval(function(){
+    var jstank = document.createElement("div")
+    jstank.className = "tank"
+    var tankx = parseInt(Math.random()*(325-1+1)+1)
+    jstank.style.left = tankx +"px"
+    jsbox.appendChild(jstank)
+
+    // 坦克移动
+    var tankmove = setInterval(function(){
+        jstank.style.top = jstank.offsetTop+5+"px"
+
+
+    // 让坦克消失
+    var tankleft = jstank.offsetLeft
+    var tankright = jstank.offsetLeft+25
+    var tanktop = jstank.offsetTop
+    var tankbottom = jstank.offsetTop+10
+    var zidanall = document.getElementsByClassName("zidan")
+    for(var i=zidanall.length-1;i>=0;i--){
+        if(tankright<zidanall[i].offsetLeft || tankleft>zidanall[i].offsetLeft+5 || tanktop>zidanall[i].offsetTop+10 || tankbottom<zidanall[i].offsetTop){
+            if(jstank.offsetLeft>350 || jstank.offsetTop > 635){
+                clearInterval(tankmove)
+                jsbox.removeChild(jstank)
+            }
+        }else{
+            clearInterval(tankmove)
+            var a =jsbox.removeChild(zidanall[i])
+            arrNum.push(a.getAttribute("num"))
+            jsbox.removeChild(jstank);
+            break;
+        }
+    }
+    },100)
+},3000)
+
