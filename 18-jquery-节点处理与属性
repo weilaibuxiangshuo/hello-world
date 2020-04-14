@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.0.min.js"></script>
+</head>
+<body>
+    <div>
+        <p>sunck is good man!</p>
+        <input type="text" id="inp">
+    </div> 
+    <script>
+        /*
+        元素的内容是指定义元素的起始标记和结束标记之间的内容，可以分为文本内容和html内容
+
+        文本内容：div元素的文本内容为"sunck is good man",文本内容不包含元素的子元素。只包含元素的文本
+
+        html内容：div元素的html内容为<p>sunck is good man!</p>，html内容不仅包含元素的文本内容，而且还包含元素的子元素
+        
+        */
+
+        $(document).ready(function(){
+            $div = $("div")
+            // 获取文本内容
+            // console.log($div.text())
+            // 用于设置全部匹配的文本内容
+            // console.log($div.text("iiiiiiiii"))
+
+            // 用于获取第一个匹配html内容
+            // console.log($div.html())
+            // 用于设置全部匹配元素的html内容，注意：内容中包含html代码可以被浏览器解析
+            // console.log($div.html("<p>lksadfl</p>"))
+
+            // 用于获取第一个匹配的value值
+            // $inp = $("#inp")
+            // console.log($inp.val())
+            // 用于设置全部匹配元素value值
+            // console.log($inp.val("999999"))
+            // 一般用于check select radio 
+            
+            // 创建元素节点
+            var $jsp1 = $("<p></P>")
+            console.log($jsp1)
+            $("div").append($jsp1)
+            // 创建文本节点
+            var $jsp2 = $("<p>sunck is a nice man</p>")
+            // 属性节点
+            var $jsp3 = $("<p title='nice'>sunck is a nice man</p>")
+            $("div").append($jsp3)
+
+            // 内部插入节点
+                /*
+                append(context) 为所有匹配元素的内部后面添加
+                appendTo(context) 将所有匹配的元素添加到另一个元素集合中后面
+                prepend(context)   为所有匹配元素的内部前面添加             
+                prependTo(context)  将所有匹配的元素添加到另一个元素集合中前面              
+                */
+            
+            // 外部插入点
+                /*
+                after(context) 在每个匹配元素的之后插入内容
+                insertAfter(context) 把每个匹配元素插入到指定元素集合之后
+                before(context)
+                insertBefore(context)
+                */ 
+
+            // 删除节点
+                /*
+                remove()  用于从dom删除匹配的元素，包括子元素在内都删除
+                var $p1 = $("div p:firest").remove()
+                detach()  用于从dom删除匹配的元素，但是对象不会删除
+                empty()  清除标签内的内容
+                */
+
+
+            // 复制节点
+                /*
+                clone()   复制节点
+                clone(true)   复制节点及节点绑定的事件一起复制
+                $("#box1 p:eq(1)").bind("click",function(){
+                    $(this).clone().insertAfter($(this))
+                })
+                */
+
+            // 替换节点
+                /*
+                replaceAll(selector) 把给定元素替换匹配所有元素
+                replaceWith(context) 把匹配的元素替换为给定的元素
+                $("<div>sunck</div>").replaceAll("div")
+                $("#box1").replaceWith("<div>sunck</div>")
+                */ 
+
+            // 遍历节点
+                /*
+                each(fn)
+                $("p").each(function(index){
+                    $(this).attr("title","我是第"+(index+1)+"p标签")
+                })
+                */ 
+            
+            // 包裹节点
+                /*
+                wrap() 把匹配到每个元素都包裹一层元素
+                $("span").wrap("<p></p>")
+                unwrap()  去除匹配每个元素的包裹
+                wrapAll() 整体包裹
+                wrapInner() 包裹内容                
+                */
+            
+            // 修改样式
+                /*
+                addClass()  添加样式 
+                removeClass()  删除样式 
+                toggleClass(class) 如果存在就删除一个css类，如果不存在就添加一个css类
+                toggleClass(class，switch) 如果switch参数为true，则加上对应的css类，否则就删除
+                $("div").addClass("change1") //change1是一个样式
+                $("div").removeClass("change1")
+                */
+
+            // 修改样式属性
+                /*
+                css() 两种方式都 可以
+                $("box1").css("backgroundColor","red")
+                $("box1").css("background-color","red")
+                // 获取css值 
+                console.log($("box").css("backgroundColor"))
+                */
+            
+            // 修改标签属性
+                /*
+                attr()
+                // 获取标签属性
+                $("box1").attr("name") 
+                // 设置标签属性
+                $("box1").attr("name","ceshi") 
+                */
+        })
+    </script>
+</body>
+</html>
