@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.0.min.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>adfsadf</p>
+        <p>0000000</p>
+        <p>kasdllllll</p>
+        <p>888888888</p>
+    </div>
+    <script>
+        $(document).ready(function(){
+            // 模拟人操作事件trigger,不会需要手动点击系统可以自动点击执行
+            $("#btn").bind("click",function(){
+                console.log("******")
+            }).trigger("click")
+            // 等同于上面
+            var a = $("#btn").bind("click",function(){
+                console.log("******")
+            })
+            a.trigger("click")
+            // 也可传参，但是只能传数组
+            var a = $("#btn").bind("click",function(data){
+                console.log("******",data)
+            })
+            a.trigger("click",["sunck"])
 
+            // 模拟鼠标悬停hover,如果那个效果不要，直接传null就可以
+            $("#btn").hover(function(){
+                console.log("鼠标移入")
+            },function(){
+                console.log("鼠标移出")
+            })
+            // 效果同上：
+            $("#btn").bind("mouseover",function(){console.log("鼠标移入")})
+            $("#btn").bind("mouseout",function(){console.log("鼠标移出")})
+
+            // 冒泡和默认事件
+            $("body").bind("click",function(){
+                $(this).css("backgroundColor","yellow")
+            })
+            $("#box").bind("click",function(e){
+                $(this).css("backgroundColor","yellow")
+                // 1、可以用原生的阻止
+                e.stopPropagation()
+                // 2.jqury方式
+                // return false可以同时阻止冒泡和默认事件
+                return false
+            })
+        })
+    </script>
+</body>
+</html>
