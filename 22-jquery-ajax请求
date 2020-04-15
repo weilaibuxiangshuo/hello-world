@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.0.min.js"></script>
+</head>
+<body>
+    <!-- 
+        url:统一资源定位符，是互联网上资源的地址。
+        http://www.ceshi.com:8999/news/index.html?boarId=3223&page=1#name
+        http  协议
+        www.ceshi.com  域名也可以是ip
+        8999   端口
+        news   目录
+        index.html  文件名
+        boarId=3223&page=1   参数
+        #name 锚
+     -->
+     <button id="btn1">按钮</button>
+     <form action="" id="testForm">
+         <input type="text" name="username" value=""/>
+         <input type="password" name="password" value=""/>
+         <input type="submit" name="" value="提交" id="btn2"/>
+     </form>
+     <script>
+         $("#btn2").bind("click",function(){
+            // //  发起异步网络请求,这个是最全的一个
+            //  $.ajax({
+            //     url:"./88.json",
+            //     type:"get",
+            //     data:{a:1,b:2},
+            //     dataType:"json",
+            //     success:function(data,testStatus){
+            //         console.log(data.name)
+            //         console.log(testStatus)
+            //     }
+            //  })
+            //  也可直接用异步$.get()
+            // $.get("./88.json",{a:1,b:3},function(data,status){
+            //     console.log(data,status)
+            // })
+            //  也可用异步$.post()
+            // $.post("./88.json",{a:1,b:3},function(data,status){
+            //     console.log(data,status)
+            // })
+            // 可以直接请求json
+            // $.getJSON("./88.json",function(data){
+            //     console.log(data)
+            // })
+            // 可以给表单里的内容序列化
+            $.ajax({
+                url:"a.html",
+                type:"post",
+                // 可以把表单键值自动搜集并序列化
+                data:$("#testForm").serialize(),
+                dataType:"json",
+                success:function(data){
+                    console.log(data)
+                }
+            })
+         })
+
+        //  ajax请求开始时执行的方法
+        $(document).ajaxStart(function(){
+            $("msg").show()
+        })
+        // ajax结束时执行的方法
+        $(document).ajaxStop(function(){
+            $("msg").slideup(1000)
+        })
+     </script>
+</body>
+</html>
