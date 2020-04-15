@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: absolute;
+
+        }
+    </style>
+    <script src="./jquery-3.5.0.min.js"></script>
+</head>
+<body style="width: 600px;position: relative;">
+    <div id="box"></div>
+    <button id="btn1">隐藏</button>
+    <button id="btn2">显示</button>
+    <button id="btn3">切换</button>
+    <script>
+        // 帧动画
+        // hide()  隐藏
+        // hide(speed[,callback])  也可以传参数
+
+        var $div = $("#box")
+        // $("#btn1").click(function(){
+        //     // 加参数可以多少秒内消失，也可用slow代表600   normal代表400   fast代表200
+        //     // $div.hide(1000) $div.hide("slow")
+        //     // 还可以带fn，动画结束时调用
+        //     $div.hide(1000,function(){
+        //         console.log("动画结束")
+        //     })
+        // })
+
+        // show()  显示,fn都是可有可无
+        // $("#btn2").click(function(){
+        //     $div.show()
+        // })
+        // toggle()  切换,fn都是可有可无
+        // $("#btn3").click(function(){
+        //     $div.toggle()
+        // })
+
+        // 淡入淡出  fadeOut()   fadeIn()
+        // $("#btn1").click(function(){
+        //     $div.fadeOut(1000)
+        // })
+
+        // 多少时间达到多少透明度,fn都是可有可无
+        // $("#btn1").click(function(){
+        //     $div.fadeTo(1000,0.3)
+        // })
+
+        // 淡入淡出切换状态,fn都是可有可无
+        // $("#btn3").click(function(){
+        //     $div.fadeToggle(1000)
+        // })
+
+        // 向上逐渐消失或向下显示,fn都是可有可无
+        /*$("#btn1").click(function(){
+            $div.slideUp(1000)
+        })
+        $("#btn2").click(function(){
+            $div.slideDown(1000)
+        })
+        // 切换可以一键处理两种状态
+        $("#btn3").click(function(){
+            var self = $(this)
+            console.log(self)
+            $div.slideToggle(1000,function(){
+                self.text("执行完了")
+            })
+        })*/
+
+        // 自定义动画
+        // animate(params[,speed,callback])
+        // 分两步
+        // $div.animate({left:"200px"},1000).animate({top:"200px"},1000)
+        // 如果要接着往后面走，可以用+=或-=要不然要设置双倍px如下：
+        // $div.animate({left:"200px"},1000).animate({left:"400px"},1000)
+        // $div.animate({left:"200px"},1000).animate({left:"+=200px"},1000)
+        // 同步,opacity透明度
+        // $div.animate({left:"200px",top:"200px",opacity:"0.5"},1000)
+        // 延迟执行delay()
+        var a = $div.animate({left:"200px",top:"200px",opacity:"0.5"},1000).delay(1000).animate({left:"400px"},1000)
+        // 停止动画stop(true,true)
+        $("#btn1").click(function(){
+            // 如果第二个参数为false就是不需要到动画结尾就行
+            // a.stop(true,true)
+            // a.stop(true,false)
+            //第一个参数为动画队列，如果为true会清除后面队列，如果为false是不会清除动画队列
+            a.stop(false,false)
+        })
+
+        // 判断是否处理动画状态
+        $("#btn2").click(function(){
+            if(a.is(":animated")){
+                console.log("---------")
+            }
+        })
+        // 还可以取反，就是延时执行
+        $("#btn2").click(function(){
+            if(!a.is(":animated")){
+                console.log("---------")
+            }
+        })
+    </script>
+</body>
+</html>
