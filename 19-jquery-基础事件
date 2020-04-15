@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.0.min.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>adfsadf</p>
+        <p>0000000</p>
+        <p>kasdllllll</p>
+        <p>888888888</p>
+    </div>
+    <script>
+        $(document).ready(function(){
+
+        })
+        /*
+        // 简写
+        $().ready(function(){
+
+        })
+        // 最简单的简写
+        $(function(){
+
+        })
+        
+        $(document).ready()方法代替传统window.onload()方法，不过两者之间还是有些细微的区别
+        1.在一个页面上可以无限制的使用$(document).ready()方法，各个方法间不冲突，会按照在代码中
+        的顺序依次执行。而window.onload()方法在一个页面中只能使用一次
+        2.在一个文档完全下载到浏览器时（包括所有关联的文件，例图片，横幅等）就会响应window.onload()方法，
+        而$(document).ready()方法是在所有的在dom元素完全就绪后就调用了，不包括关联的文件，例如在页面上还有
+        图片没有加载完毕，但是dom元素已经完全就绪，就会执行$(document).ready()方法。在相同条件下，window.onload()
+        方法是不会执行，它会等关联文件都下载完毕才会执行。显然，把网页解析为dom元素的速度要比把所有页面中的所有关联文件
+        加载完毕速度快
+        3.使用$(document).ready()方法时要注意，因为dom元素就绪就可以执行该方法，所以元素的关联文件例如图片等，未下载完全就绪。
+        此时要获得图片的高度或者宽度属性是未必会有效的。要解决这个问题。jquery提供一下load()方法。load()方法会在元素的onload事件
+        绑定一个处理函数。如果这个处理函数绑定到window对象上，则会在所有内容加载完毕触发。如果绑定在元素上，则会
+        在元素的内容加载完毕后触发。
+
+        $(document).load(function(){}) 等价  wwindow.onload=function(){}
+
+        // 事件
+        blur(fn)  离焦事件，当鼠标或者tab离开焦点的行为
+        change(fn)  在元素的值改变并失去焦点时触发
+        click(fn)   在元素上单击时触发
+        dbclick(fn)  在元素上双击触发
+        error(fn)   当javascript发生错误时触发
+        focus(fn)   聚焦时处发
+        keydown(fn)  键盘按下时触发
+        keyup(fn)    键盘弹起时触发
+        keypress(fn)  敲击按键时触发（即按下并抬起同一个按键）
+        load(fn)    匹配的元素内容完全加载完毕后触发
+        mousedown(fn)  鼠标按下时触发
+        mousemove(fn)   鼠标移动时触发
+        mouseout(fn)    鼠标从元素上离开时触发
+        mouseover(fn)   鼠标移动到元素上时触发
+        mouseup(fn)     鼠标抬起触发
+        resize(fn)     当文档窗口改变大小时触发
+        scroll(fn)    当滚动条发生变化时触发
+        select(fn)    当用户在文本框（input和textarea）选中某段文本时触发
+        submit(fn)    表单提交时触发
+        unload(fn)     在元素卸载时触发
+        */
+
+        $(document).ready(function(){
+            // bind   delegate on live
+
+            // $("div p").bind("click",function(){
+            //     console.log($(this).text())
+            // })
+            // $("div p").bind("click",data,function(e){
+                // 可以外部传入值
+                //    console.log(e.data)
+            //     console.log($(this).text())
+            // })
+            // 移除绑定事件
+            // $("div p").unbind("click")
+            /*
+            问题：
+            1.使用隐式迭代的方法，它会给每个匹配的元素都会执行一次bind,匹配的标签的多了，性能就比较低下
+            2.对于尚未存在标签，无法绑定事件，创建的标签是绑定不上，只能绑定已经存在
+            3.比较适用绑定id的标签事件，因为比较少
+            */
+
+            // 委托绑定，只绑定一次，例如下面创建的标签也会绑定
+            // $("div").delegate("p","click",function(){
+            //     console.log($(this).text())
+            // })
+            // 移除事件
+            // $("div").undelegate("p","click")
+            /*
+            如果dom事件比较深不推荐使用，因为也是消耗资源
+            */
+            // 推荐使用on,给父元素绑定事件，会冒泡到子元素，但是dom也是一样不要太深
+            $("div").on("click","p",function(){
+                console.log($(this).text())
+            })
+            // 移除点击事件
+            $("div").off("click","p")
+
+            // 一次性事件，只能点击一次
+            $("#btn").one("click",function(){})
+
+
+        })
+    </script>
+</body>
+</html>
