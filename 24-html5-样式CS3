@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* p:before {
+            content: "*";
+        }
+        p::after {
+            content: "!";
+            color: red;
+        }
+         root是给html加的样式 
+        :root {
+            background-color: blue;
+        }
+        p:not(.item2){
+            background-color: yellow;
+        } */
+        div:target {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p class="item1"><a href="#it1">item1</a></p>
+    <p class="item2"><a href="#it2">item1</a></p>
+    <p class="item3"><a href="#it3">item1</a></p>
+    <div id="it1">item1</div>
+    <div id="it2">item2</div>
+    <div id="it3">item3</div>
+    <!-- 
+        css3新增的选择器 
+        1.结构性的伪类选择器
+            first-line 选中某个元素中的第一个行文字
+            first-letter 选中元素中的文字首字母(英文)或者第一个(中文或者日文等)
+            before 用于在某个元素之前插入一些内容
+            after 用于在某个元素之后插入一些内容
+    -->
+
+
+</body>
+</html>
