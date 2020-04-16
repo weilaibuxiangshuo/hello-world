@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.0.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- 
+        HTML5新标签
+        结构性标签：<article>文章 <aside>列表 <footer>页角 <header>头部 <nav>导航 <section>块
+        非结构性标签：（有标注汉字，就是底下有实例）
+        <audio><video><canvas>画图<command><datalist>列表和input一起用
+        <details>元素的细节<figure>插图<mark>加强语气<progress>进度条<source><time>
+     -->
+    <div class="nav">你好</div>
+    <nav>你好</nav>
+    <!-- list的值要跟底下datalist的id值一致 -->
+    <input type="text" placeholder="请输入" list="data">
+    <datalist id="data">
+        <option >nice</option>
+        <option >good</option>
+        <option >coool</option>
+    </datalist>
+
+    <figure>
+        <p>黄浦江上的的卢浦大桥</p>
+        <p>拍摄者：W3School 项目组，拍摄时间：2010 年 10 月</p>
+        <img src="/i/shanghai_lupu_bridge.jpg" width="350" height="234" title="黄浦江"/>
+      </figure>
+
+    <details>
+        <summary>
+            sunck
+        </summary>
+        <p>sunck is a good man</p>
+    </details>
+
+    <p>sunck is <mark>nice</mark> man</p>
+    <!-- 进度条，只要改value值就可以变动 -->
+    <progress  max="100" min="0" value="10"></progress>
+    <!-- 表单新增的类型 -->
+    <form action="">
+        <input type="range" max="100" min="0" value="10" step="5">
+        <input type="date" value="" id="" value="">
+        <input type="week" value="" id="" value="">
+        <input type="month" value="" id="" value="">
+        <input type="datetime-local" value="" id="" value="">
+        <input type="time" value="" id="" value="">
+        <input type="search" value="" id="" value="">
+        <input type="color" value="" id="" value="">
+    </form>
+
+    <!-- 图片拖放 -->
+    <script>
+        img.ondragstart = function(e){
+            var data = e.dataTransfer
+            data.setData("text/plain",this.id)
+        }
+        box2.ondragover = function(e){
+            e.preventDefault();
+        }
+        box2.ondrop = function(e){
+            var data = e.dataTransfer
+            var text = data.getData("text/plain")
+            // 插入
+            e.target.appendChild(document.getElementById(text))
+        }
+    </script>
+
+    
+
+</body>
+</html>
