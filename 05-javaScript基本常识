@@ -54,6 +54,18 @@ arr.forEach(function(e){
     console.log(e)
 })
 
+// 字典 遍历
+var dic={A:"AA",B:"BB",C:"CC"} //不能length去for循环(length:undefined)
+
+dic["D"]="DD"; //新增键值对
+
+var tmp=dic["D"]; //通过key获取值
+
+for (var key in dic) {
+　　var item = dic[key];
+　　console.log(item); //AA,BB,CC,DD
+}
+
 // 删除数组中的元素
 // 注意删除数组中的元素，位置还是在只是显示empty
 delete arr[0]
