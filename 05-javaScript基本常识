@@ -66,6 +66,18 @@ for (var key in dic) {
 　　console.log(item); //AA,BB,CC,DD
 }
 
+for in是ES5标准，遍历key. 
+for of是ES6标准，遍历value.
+
+for (var key in arr){
+    console.log(arr[key]);
+}
+
+for (var value of arr){
+    console.log(value);
+}
+
+
 // 删除数组中的元素
 // 注意删除数组中的元素，位置还是在只是显示empty
 delete arr[0]
